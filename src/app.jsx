@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
 import { gql } from "@apollo/client"
 
-import { Home, Companies, Company, Cars } from "./components"
+import { Home, Companies, Company, Cars, Car } from "./components"
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -56,6 +56,9 @@ const App = () => {
             </Route>
             <Route path="/cars">
               <Cars />
+            </Route>
+            <Route path="/car/:id">
+              <Car />
             </Route>
             <Route path="/">
               <Home />
