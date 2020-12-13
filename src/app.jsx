@@ -27,6 +27,7 @@ client
     `,
   })
   .then((result) => console.log(result))
+  .catch((error) => console.log(`error occurred ${error}`))
 
 const App = () => {
   return (
