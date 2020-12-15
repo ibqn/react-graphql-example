@@ -33,39 +33,23 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">home</Link>
-              </li>
-              <li>
-                <Link to="/companies">companies</Link>
-              </li>
-              <li>
-                <Link to="/cars">cars</Link>
-              </li>
-            </ul>
-          </nav>
-
-          <Switch>
-            <Route path="/companies">
-              <Companies />
-            </Route>
-            <Route path="/company/:id">
-              <Company />
-            </Route>
-            <Route path="/cars">
-              <Cars />
-            </Route>
-            <Route path="/car/:id">
-              <Car />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
+        <Switch>
+          <Route path="/companies">
+            <Companies />
+          </Route>
+          <Route path="/company/:id">
+            <Company />
+          </Route>
+          <Route path="/cars">
+            <Cars />
+          </Route>
+          <Route path="/car/:id">
+            <Car />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
       </Router>
     </ApolloProvider>
   )

@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import { useMutation, useQuery, gql } from "@apollo/client"
 import { Link } from "react-router-dom"
+import Header from "./header"
 
 const CREATE_COMPANY = gql`
   mutation CreateCompany($name: String!) {
@@ -122,33 +123,51 @@ const Companies = () => {
 
   const { loading, error, data } = useQuery(COMPANIES)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <p>Loading...</p>
+      </>
+    )
+  }
+
+  if (error) {
+    return (
+      <>
+        <Header />
+        <p>Error :(</p>
+      </>
+    )
+  }
 
   return (
-    <div>
-      <h2>companies</h2>
+    <>
+      <Header />
       <div>
-        <p>add new company</p>
-        <form onSubmit={handleSubmit} disabled={formLoading}>
-          <label>
-            name: <input type="text" value={name} onChange={changeName} />
-          </label>{" "}
-          <input type="submit" value="add" />
-        </form>
-      </div>
+        <h2>companies</h2>
+        <div>
+          <p>add new company</p>
+          <form onSubmit={handleSubmit} disabled={formLoading}>
+            <label>
+              name: <input type="text" value={name} onChange={changeName} />
+            </label>{" "}
+            <input type="submit" value="add" />
+          </form>
+        </div>
 
-      <ul>
-        {data.allCompanies.edges.map(({ node: { id, name } }) => (
-          <li key={id}>
-            <p>
-              <Link to={`/company/${id}`}>{id}</Link>: {name}{" "}
-              <button onClick={() => handleRemove(id)}>remove</button>
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
+        <ul>
+          {data.allCompanies.edges.map(({ node: { id, name } }) => (
+            <li key={id}>
+              <p>
+                <Link to={`/company/${id}`}>{id}</Link>: {name}{" "}
+                <button onClick={() => handleRemove(id)}>remove</button>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   )
 }
 
