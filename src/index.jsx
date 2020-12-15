@@ -4,11 +4,12 @@ import "./index.css"
 import App from "./app"
 import reportWebVitals from "./reportWebVitals"
 
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { createMuiTheme } from "@material-ui/core/styles"
 import indigo from "@material-ui/core/colors/indigo"
 import orange from "@material-ui/core/colors/orange"
 import CssBaseline from "@material-ui/core/CssBaseline"
 
+import { ThemeProvider } from "./theme-provider"
 import "fontsource-roboto"
 
 const theme = createMuiTheme({
@@ -31,10 +32,10 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <App />
-    </MuiThemeProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 )

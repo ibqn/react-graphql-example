@@ -3,10 +3,15 @@ import React from "react"
 import { useTheme, makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
-import SvgIcon from "@material-ui/core/SvgIcon"
 import Typography from "@material-ui/core/Typography"
 
 import { Link } from "react-router-dom"
+
+import { useChangeTheme } from "../theme-provider"
+
+import IconButton from "@material-ui/core/IconButton"
+import Brightness4Icon from "@material-ui/icons/Brightness4"
+import Brightness7Icon from "@material-ui/icons/Brightness7"
 
 import { ReactComponent as Logo } from "./logo.svg"
 
@@ -32,11 +37,13 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontSize: 18,
   },
+  icon: { color: "white" },
 }))
 
 const Header = () => {
   const theme = useTheme()
   const classes = useStyles(theme)
+  const changeTheme = useChangeTheme()
   return (
     <AppBar position="static" className={classes.root}>
       <Toolbar>
@@ -59,6 +66,16 @@ const Header = () => {
             cars
           </Typography>
         </Link>
+        <IconButton
+          title="Toggle light/dark mode"
+          onClick={() => changeTheme()}
+        >
+          {theme.palette.type === "light" ? (
+            <Brightness4Icon className={classes.icon} />
+          ) : (
+            <Brightness7Icon className={classes.icon} />
+          )}
+        </IconButton>
       </Toolbar>
     </AppBar>
   )
