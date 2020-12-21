@@ -2,13 +2,41 @@ import "./app.css"
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client"
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  // createHttpLink,
+  // from,
+} from "@apollo/client"
 import { gql } from "@apollo/client"
+// import { onError } from "@apollo/client/link/error"
 
 import { Home, Companies, Company, Cars, Car } from "./components"
+import { Login, Register } from "./components/auth"
+
+// const httpLink = createHttpLink({
+//   uri: "/graphql",
+// })
+
+// const errorLink = onError(({ response, graphQLErrors, networkError }) => {
+//   if (graphQLErrors)
+//     graphQLErrors.map(({ message, locations, path }) =>
+//       console.log(
+//         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+//       )
+//     )
+
+//   if (networkError) {
+//     console.log(`[Network error]: ${networkError}`)
+//   }
+// })
+
+// const link = from([errorLink, httpLink])
 
 const client = new ApolloClient({
   uri: "/graphql",
+  // link,
   cache: new InMemoryCache(),
 })
 
@@ -45,6 +73,12 @@ const App = () => {
           </Route>
           <Route path="/car/:id">
             <Car />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
           <Route path="/">
             <Home />

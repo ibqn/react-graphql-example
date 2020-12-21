@@ -10,6 +10,7 @@ import orange from "@material-ui/core/colors/orange"
 import CssBaseline from "@material-ui/core/CssBaseline"
 
 import { ThemeProvider } from "./theme-provider"
+
 import "fontsource-roboto"
 
 const theme = createMuiTheme({

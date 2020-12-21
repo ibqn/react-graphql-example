@@ -27,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textDecoration: "none",
   },
+  auth: {
+    display: "flex",
+    alignItems: "center",
+    textDecoration: "none",
+  },
   logo: {
     marginRight: theme.spacing(2),
     width: 30,
@@ -76,6 +81,11 @@ const Header = () => {
             <Brightness7Icon className={classes.icon} />
           )}
         </IconButton>
+        <Link to="/login" className={classes.auth}>
+          <Typography variant="caption" className={classes.link} noWrap>
+            login
+          </Typography>
+        </Link>
       </Toolbar>
     </AppBar>
   )
