@@ -11,7 +11,7 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 
 import { ThemeProvider } from "./theme-provider"
 
-import "fontsource-roboto"
+import "@fontsource/roboto"
 
 const theme = createMuiTheme({
   palette: {
