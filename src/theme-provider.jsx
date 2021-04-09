@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
@@ -6,11 +6,7 @@ import React, {
   useCallback,
 } from "react"
 
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  useTheme,
-} from "@material-ui/core/styles"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
 import useMediaQuery from "@material-ui/core/useMediaQuery"
 import { lightBlue, grey } from "@material-ui/core/colors"
@@ -37,7 +33,7 @@ const ThemeProvider = ({ children, theme }) => {
 
   return (
     <MuiThemeProvider theme={memoTheme}>
-      <DarkModeContext.Provider value={setDarkMode}>
+      <DarkModeContext.Provider value={[darkMode, setDarkMode]}>
         {children}
       </DarkModeContext.Provider>
     </MuiThemeProvider>
@@ -45,14 +41,13 @@ const ThemeProvider = ({ children, theme }) => {
 }
 
 const useChangeTheme = () => {
-  const theme = useTheme()
-  const setDarkMode = useContext(DarkModeContext)
-  const changeTheme = useCallback(
-    () => setDarkMode(theme.palette.type === "light"),
-    [theme.palette.type, setDarkMode]
-  )
+  const [darkMode, setDarkMode] = useContext(DarkModeContext)
+  const changeTheme = useCallback(() => setDarkMode(!darkMode), [
+    darkMode,
+    setDarkMode,
+  ])
 
-  return changeTheme
+  return [darkMode, changeTheme]
 }
 
 export { ThemeProvider, useChangeTheme }

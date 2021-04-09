@@ -1,6 +1,4 @@
-import React from "react"
-
-import { useTheme, makeStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
@@ -27,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     textDecoration: "none",
   },
+  nav: {
+    display: "flex",
+    alignItems: "center",
+    textDecoration: "none",
+    margin: theme.spacing(),
+  },
   auth: {
     display: "flex",
     alignItems: "center",
@@ -36,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     width: 30,
     height: 30,
-    fill: "#ffffffff",
+    fill: "white",
   },
   link: {
     color: "white",
@@ -46,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Header = () => {
-  const theme = useTheme()
-  const classes = useStyles(theme)
-  const changeTheme = useChangeTheme()
+  const classes = useStyles()
+  const [darkMode, changeTheme] = useChangeTheme()
+
   return (
     <AppBar position="static" className={classes.root}>
       <Toolbar>
@@ -60,13 +64,13 @@ const Header = () => {
           </Typography>
         </Link>
 
-        <Link to="/companies" className={classes.grow}>
+        <Link to="/companies" className={classes.nav}>
           <Typography variant="caption" className={classes.link} noWrap>
             companies
           </Typography>
         </Link>
 
-        <Link to="/cars" className={classes.grow}>
+        <Link to="/cars" className={classes.nav}>
           <Typography variant="caption" className={classes.link} noWrap>
             cars
           </Typography>
@@ -75,7 +79,7 @@ const Header = () => {
           title="Toggle light/dark mode"
           onClick={() => changeTheme()}
         >
-          {theme.palette.type === "light" ? (
+          {darkMode ? (
             <Brightness4Icon className={classes.icon} />
           ) : (
             <Brightness7Icon className={classes.icon} />
