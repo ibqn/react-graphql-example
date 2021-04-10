@@ -30,7 +30,7 @@ const Cars = () => {
       <h2>cars</h2>
       {/* {JSON.stringify(cars)} */}
       {cars.map(({ id, name, notes }) => (
-        <p>
+        <p key={id}>
           <Link to={`/car/${id}`}>{name}</Link> notes: {notes}
         </p>
       ))}
