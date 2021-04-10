@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { makeStyles, useTheme } from "@material-ui/core/styles"
+import { useState } from "react"
+import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Snackbar from "@material-ui/core/Snackbar"
 
@@ -12,8 +12,7 @@ const useStyles = makeStyles((theme) => ({
 const Error = ({ error }) => {
   const [open, setOpen] = useState(true)
 
-  const theme = useTheme()
-  const classes = useStyles(theme)
+  const classes = useStyles()
 
   return (
     <Snackbar
