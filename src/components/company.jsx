@@ -30,7 +30,7 @@ const Company = () => {
   const { id, name } = data.company
 
   return (
-    <div>
+    <>
       <h2>company</h2>
       <div>
         <p>
@@ -50,7 +50,7 @@ const Company = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </>
   )
 }
 
