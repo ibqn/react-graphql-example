@@ -14,6 +14,7 @@ import { gql } from "@apollo/client"
 
 import { Home, Companies, Company, Cars, Car } from "./components"
 import { Login, Register } from "./components/auth"
+import Header from "./components/header"
 
 // const httpLink = createHttpLink({
 //   uri: "/graphql",
@@ -61,6 +62,7 @@ const App = () => {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <Header />
         <Switch>
           <Route path="/companies">
             <Companies />

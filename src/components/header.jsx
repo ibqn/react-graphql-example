@@ -3,7 +3,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
 
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import { useChangeTheme } from "../theme-provider"
 
@@ -52,6 +52,12 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles()
   const [darkMode, changeTheme] = useChangeTheme()
+
+  const location = useLocation()
+
+  if (location.pathname.match("/(login|register)")) {
+    return null
+  }
 
   return (
     <AppBar position="static" className={classes.root}>
