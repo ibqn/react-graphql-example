@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 import { useMutation, gql } from "@apollo/client"
 
@@ -100,9 +100,11 @@ const Login = () => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <Lock />
-        </Avatar>
+        <Link to="/">
+          <Avatar className={classes.avatar}>
+            <Lock />
+          </Avatar>
+        </Link>
         <Typography variant="h5">Login as Existing User</Typography>
 
         <form onSubmit={(event) => handleSubmit(event)} disabled={loading}>
